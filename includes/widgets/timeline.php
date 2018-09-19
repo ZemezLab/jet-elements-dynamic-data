@@ -55,10 +55,6 @@ class Jet_Elements_Dynamic_Data_Timeline extends Jet_Elements_Dynamic_Data_Base 
 				'label' => __( 'Description', 'jet-elements-dynamic-data' ),
 			),
 			array(
-				'name'  => 'item_point',
-				'label' => __( 'Point', 'jet-elements-dynamic-data' ),
-			),
-			array(
 				'name'  => 'item_point_type',
 				'label' => __( 'Point Content Type (item ot text)', 'jet-elements-dynamic-data' ),
 			),
