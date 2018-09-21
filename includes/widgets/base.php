@@ -57,7 +57,7 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 			return $loop;
 		}
 
-		$new_loop = get_post_meta( get_the_ID(), $meta_key, true );
+		$new_loop = $this->get_meta_value( $meta_key );
 		$loop     = array();
 		$map      = array();
 
@@ -104,6 +104,49 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 		}
 
 		return $loop;
+
+	}
+
+	/**
+	 * Get JetEngine or ACF meta value
+	 *
+	 * @param  [type] $meta_key [description]
+	 * @return [type]           [description]
+	 */
+	public function get_meta_value( $meta_key = null ) {
+
+		$value = get_post_meta( get_the_ID(), $meta_key, true );
+
+		if ( ! $value ) {
+			return array();
+		}
+
+		if ( is_array( $value ) ) {
+			return $value;
+		}
+
+		if ( 0 >= absint( $value ) || ! function_exists( 'acf_get_field' ) ) {
+			return array();
+		}
+
+		$field      = acf_get_field( $meta_key );
+		$sub_fields = isset( $field['sub_fields'] ) ? $field['sub_fields'] : false;
+		$result     = array();
+
+		for ( $i = 0; $i < absint( $value ); $i++ ) {
+
+			$item = array();
+
+			foreach ( $sub_fields as $sub_field ) {
+				$sub_key                    = $meta_key . '_' . $i . '_' . $sub_field['name'];
+				$item[ $sub_field['name'] ] = get_post_meta( get_the_ID(), $sub_key, true );
+			}
+
+			$result[] = $item;
+
+		}
+
+		return $result;
 
 	}
 

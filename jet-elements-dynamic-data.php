@@ -3,7 +3,7 @@
  * Plugin Name: JetElements Dynamic Data Addon
  * Plugin URI:  https://crocoblock.com/
  * Description: Allows to use dynamic data in JetElements widgets.
- * Version:     1.0.0
+ * Version:     1.1.0
  * Author:      Zemez
  * Author URI:  https://crocoblock.com/plugins/
  * Text Domain: jet-elements-dynamic-data
@@ -39,7 +39,7 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data' ) ) {
 		 *
 		 * @var string
 		 */
-		private $version = '1.0.0';
+		private $version = '1.1.0';
 
 		/**
 		 * Holder for base plugin URL
