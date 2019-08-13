@@ -80,13 +80,14 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data' ) ) {
 			$path = $this->plugin_path( 'includes/widgets/' );
 
 			$widgets = array(
-				'Jet_Elements_Dynamic_Data_Testimonials'      => $path . 'testimonials.php',
-				'Jet_Elements_Dynamic_Data_Advanced_Carousel' => $path . 'advanced-carousel.php',
-				'Jet_Elements_Dynamic_Data_Images_Layout'     => $path . 'images-layout.php',
-				'Jet_Elements_Dynamic_Data_Portfolio'         => $path . 'portfolio.php',
-				'Jet_Elements_Dynamic_Data_Slider'            => $path . 'slider.php',
-				'Jet_Elements_Dynamic_Data_Timeline'          => $path . 'timeline.php',
-				'Jet_Elements_Dynamic_Data_Price_List'        => $path . 'price-list.php',
+				'Jet_Elements_Dynamic_Data_Testimonials'        => $path . 'testimonials.php',
+				'Jet_Elements_Dynamic_Data_Advanced_Carousel'   => $path . 'advanced-carousel.php',
+				'Jet_Elements_Dynamic_Data_Images_Layout'       => $path . 'images-layout.php',
+				'Jet_Elements_Dynamic_Data_Portfolio'           => $path . 'portfolio.php',
+				'Jet_Elements_Dynamic_Data_Slider'              => $path . 'slider.php',
+				'Jet_Elements_Dynamic_Data_Timeline'            => $path . 'timeline.php',
+				'Jet_Elements_Dynamic_Data_Price_List'          => $path . 'price-list.php',
+				'Jet_Elements_Dynamic_Data_Horizontal_Timeline' => $path . 'horizontal-timeline.php',
 			);
 
 			require_once $path . 'base.php';

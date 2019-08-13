@@ -7,7 +7,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die();
 }
 
-class Jet_Elements_Dynamic_Data_Timeline extends Jet_Elements_Dynamic_Data_Base {
+class Jet_Elements_Dynamic_Data_Horizontal_Timeline extends Jet_Elements_Dynamic_Data_Base {
 
 	/**
 	 * Processed widget ID
@@ -15,7 +15,7 @@ class Jet_Elements_Dynamic_Data_Timeline extends Jet_Elements_Dynamic_Data_Base 
 	 * @return string
 	 */
 	public function widget_id() {
-		return 'jet-timeline';
+		return 'jet-horizontal-timeline';
 	}
 
 	/**
@@ -24,7 +24,7 @@ class Jet_Elements_Dynamic_Data_Timeline extends Jet_Elements_Dynamic_Data_Base 
 	 * @return string
 	 */
 	public function insert_after() {
-		return 'section_cards';
+		return 'section_items';
 	}
 
 	/**
@@ -35,12 +35,20 @@ class Jet_Elements_Dynamic_Data_Timeline extends Jet_Elements_Dynamic_Data_Base 
 	public function fields_map() {
 		return array(
 			array(
+				'name'  => 'is_item_active',
+				'label' => __( 'Is Item Active (yes or empty string)', 'jet-elements-dynamic-data' ),
+			),
+			array(
 				'name'  => 'show_item_image',
 				'label' => __( 'Show Image (yes or empty string)', 'jet-elements-dynamic-data' ),
 			),
 			array(
 				'name'  => 'item_image',
 				'label' => __( 'Image', 'jet-elements-dynamic-data' ),
+			),
+			array(
+				'name'  => 'item_image_size',
+				'label' => __( 'Image Size', 'jet-elements-dynamic-data' ),
 			),
 			array(
 				'name'  => 'item_title',
