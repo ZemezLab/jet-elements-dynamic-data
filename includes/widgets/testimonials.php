@@ -30,7 +30,7 @@ class Jet_Elements_Dynamic_Data_Testimonials extends Jet_Elements_Dynamic_Data_B
 	/**
 	 * Section ID to insert dynamic section after
 	 *
-	 * @return string
+	 * @return array
 	 */
 	public function fields_map() {
 		return array(
@@ -61,6 +61,15 @@ class Jet_Elements_Dynamic_Data_Testimonials extends Jet_Elements_Dynamic_Data_B
 			array(
 				'name'  => 'item_date',
 				'label' => __( 'Date', 'jet-elements-dynamic-data' ),
+			),
+			array(
+				'name'     => 'item_link',
+				'label'    => __( 'Link', 'jet-elements-dynamic-data' ),
+				'property' => 'url',
+			),
+			array(
+				'name'  => 'item_rating',
+				'label' => __( 'Rating', 'jet-elements-dynamic-data' ),
 			),
 		);
 	}

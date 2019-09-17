@@ -14,7 +14,7 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 			array( $this, 'register_controls' )
 		);
 
-		add_action( 'jet-elements/widget/loop-items', array( $this, 'get_meta_loop' ), 10, 3 );
+		add_filter( 'jet-elements/widget/loop-items', array( $this, 'get_meta_loop' ), 10, 3 );
 
 	}
 
@@ -35,7 +35,7 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 	/**
 	 * Section ID to insert dynamic section after
 	 *
-	 * @return string
+	 * @return array
 	 */
 	abstract public function fields_map();
 
@@ -69,6 +69,7 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 			$map[ $field['name'] ] = array(
 				'key'      => isset( $settings[ $key_option ] ) ? $settings[ $key_option ] : '',
 				'is_image' => isset( $settings[ $is_image_option ] ) ? $settings[ $is_image_option ] : '',
+				'property' => ! empty( $field['property'] ) ? $field['property'] : null,
 			);
 		}
 
@@ -80,15 +81,17 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 
 			foreach ( $map as $result_key => $data ) {
 
+				$return_property = $data['property'];
+
 				if ( ! $data['key'] || ! isset( $loop_item[ $data['key'] ] ) ) {
 					if ( $data['key'] ) {
-						$new_item[ $result_key ] = $data['key'];
+						$new_item[ $result_key ] = $return_property ? array( $return_property => $data['key'] ) : $data['key'];
 					} else {
 						$new_item[ $result_key ] = false;
 					}
 				} else {
 					if ( ! $data['is_image'] ) {
-						$new_item[ $result_key ] = $loop_item[ $data['key'] ];
+						$new_item[ $result_key ] = $return_property ? array( $return_property => $loop_item[ $data['key'] ] ) : $loop_item[ $data['key'] ];
 					} else {
 						$new_item[ $result_key ] = array(
 							'id'  => $loop_item[ $data['key'] ],
@@ -96,7 +99,6 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 						);
 					}
 				}
-
 			}
 
 			$loop[] = $new_item;

@@ -71,8 +71,9 @@ class Jet_Elements_Dynamic_Data_Timeline extends Jet_Elements_Dynamic_Data_Base 
 				'label' => __( 'Button Text', 'jet-elements-dynamic-data' ),
 			),
 			array(
-				'name'  => 'item_btn_url',
-				'label' => __( 'Button URL', 'jet-elements-dynamic-data' ),
+				'name'     => 'item_btn_url',
+				'label'    => __( 'Button URL', 'jet-elements-dynamic-data' ),
+				'property' => 'url',
 			),
 		);
 	}

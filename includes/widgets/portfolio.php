@@ -30,7 +30,7 @@ class Jet_Elements_Dynamic_Data_Portfolio extends Jet_Elements_Dynamic_Data_Base
 	/**
 	 * Section ID to insert dynamic section after
 	 *
-	 * @return string
+	 * @return array
 	 */
 	public function fields_map() {
 		return array(
@@ -55,8 +55,9 @@ class Jet_Elements_Dynamic_Data_Portfolio extends Jet_Elements_Dynamic_Data_Base
 				'label' => __( 'Link Text', 'jet-elements-dynamic-data' ),
 			),
 			array(
-				'name'  => 'item_button_url',
-				'label' => __( 'Link Url', 'jet-elements-dynamic-data' ),
+				'name'     => 'item_button_url',
+				'label'    => __( 'Link Url', 'jet-elements-dynamic-data' ),
+				'property' => 'url',
 			),
 		);
 	}

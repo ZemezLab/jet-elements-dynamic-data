@@ -30,7 +30,7 @@ class Jet_Elements_Dynamic_Data_Price_List extends Jet_Elements_Dynamic_Data_Bas
 	/**
 	 * Section ID to insert dynamic section after
 	 *
-	 * @return string
+	 * @return array
 	 */
 	public function fields_map() {
 		return array(
@@ -51,8 +51,9 @@ class Jet_Elements_Dynamic_Data_Price_List extends Jet_Elements_Dynamic_Data_Bas
 				'label' => __( 'Image', 'jet-elements-dynamic-data' ),
 			),
 			array(
-				'name'  => 'item_url',
-				'label' => __( 'URL', 'jet-elements-dynamic-data' ),
+				'name'     => 'item_url',
+				'label'    => __( 'URL', 'jet-elements-dynamic-data' ),
+				'property' => 'url',
 			),
 		);
 	}

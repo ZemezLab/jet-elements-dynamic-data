@@ -30,7 +30,7 @@ class Jet_Elements_Dynamic_Data_Images_Layout extends Jet_Elements_Dynamic_Data_
 	/**
 	 * Section ID to insert dynamic section after
 	 *
-	 * @return string
+	 * @return array
 	 */
 	public function fields_map() {
 		return array(

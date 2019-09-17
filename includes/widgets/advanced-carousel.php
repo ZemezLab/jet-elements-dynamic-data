@@ -30,7 +30,7 @@ class Jet_Elements_Dynamic_Data_Advanced_Carousel extends Jet_Elements_Dynamic_D
 	/**
 	 * Section ID to insert dynamic section after
 	 *
-	 * @return string
+	 * @return array
 	 */
 	public function fields_map() {
 		return array(
