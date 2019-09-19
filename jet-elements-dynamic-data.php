@@ -5,7 +5,7 @@
  * Description: Allows to use dynamic data in JetElements widgets.
  * Version:     1.1.1
  * Author:      Zemez
- * Author URI:  https://crocoblock.com/plugins/
+ * Author URI:
  * Text Domain: jet-elements-dynamic-data
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
