@@ -73,10 +73,10 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 			);
 		}
 
-		foreach ( $new_loop as $loop_item ) {
+		foreach ( $new_loop as $inx => $loop_item ) {
 
 			$new_item = array(
-				'_id' => $widget->get_id(),
+				'_id' => $widget->get_id() . '_' . $inx,
 			);
 
 			foreach ( $map as $result_key => $data ) {
@@ -112,8 +112,8 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 	/**
 	 * Get JetEngine or ACF meta value
 	 *
-	 * @param  [type] $meta_key [description]
-	 * @return [type]           [description]
+	 * @param  string $meta_key
+	 * @return array
 	 */
 	public function get_meta_value( $meta_key = null ) {
 
@@ -155,7 +155,7 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 	/**
 	 * Return enabled key name
 	 *
-	 * @return [type] [description]
+	 * @return string
 	 */
 	public function enabled_key() {
 		$widget_id = str_replace( '-', '_', $this->widget_id() );
@@ -207,7 +207,7 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 			'set_dynamic_map',
 			array(
 				'type' => Elementor\Controls_Manager::RAW_HTML,
-				'raw' => __( 'Set apropriate repeater field names for widget fields', 'jet-elements-dynamic-data' ),
+				'raw' => __( 'Set appropriate repeater field names for widget fields', 'jet-elements-dynamic-data' ),
 				'condition' => array(
 					$enabled_key => 'true',
 				),
