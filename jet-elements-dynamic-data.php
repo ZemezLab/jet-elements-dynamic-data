@@ -30,7 +30,7 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data' ) ) {
 		 *
 		 * @since  1.0.0
 		 * @access private
-		 * @var    object
+		 * @var    Jet_Elements_Dynamic_Data
 		 */
 		private static $instance = null;
 
@@ -60,6 +60,13 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data' ) ) {
 		private $plugin_path = null;
 
 		/**
+		 * Filters manager instance
+		 *
+		 * @var Jet_Elements_Dynamic_Data_Filters
+		 */
+		public $filters = null;
+
+		/**
 		 * Sets up needed actions/filters for the plugin to initialize.
 		 *
 		 * @since 1.0.0
@@ -76,6 +83,9 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data' ) ) {
 		 * @return void
 		 */
 		public function init() {
+
+			require $this->plugin_path( 'includes/filters.php' );
+			$this->filters   = new Jet_Elements_Dynamic_Data_Filters();
 
 			$path = $this->plugin_path( 'includes/widgets/' );
 
@@ -157,7 +167,7 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data' ) ) {
 		 *
 		 * @since  1.0.0
 		 * @access public
-		 * @return object
+		 * @return Jet_Elements_Dynamic_Data
 		 */
 		public static function get_instance() {
 			// If the single instance hasn't been set, set it now.
@@ -172,10 +182,10 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data' ) ) {
 if ( ! function_exists( 'jet_elements_dynamic_data' ) ) {
 
 	/**
-	 * Returns instanse of the plugin class.
+	 * Returns instance of the plugin class.
 	 *
 	 * @since  1.0.0
-	 * @return object
+	 * @return Jet_Elements_Dynamic_Data
 	 */
 	function jet_elements_dynamic_data() {
 		return Jet_Elements_Dynamic_Data::get_instance();
