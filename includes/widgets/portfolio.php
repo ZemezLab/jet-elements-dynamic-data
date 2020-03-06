@@ -59,6 +59,10 @@ class Jet_Elements_Dynamic_Data_Portfolio extends Jet_Elements_Dynamic_Data_Base
 				'label'    => __( 'Link Url', 'jet-elements-dynamic-data' ),
 				'property' => 'url',
 			),
+			array(
+				'name'  => 'item_image_link',
+				'label' => __( 'Image Link (lightbox or external)', 'jet-elements-dynamic-data' ),
+			),
 		);
 	}
 
