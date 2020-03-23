@@ -42,6 +42,10 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data_Filters' ) ) {
 					'cb'   => array( $this, 'get_post_link' ),
 					'args' => false,
 				),
+				'render_fa_icon' => array(
+					'cb'   => array( $this, 'get_fa_icon_html' ),
+					'args' => false,
+				),
 			) );
 		}
 
@@ -139,6 +143,23 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data_Filters' ) ) {
 				$this->get_post_url( $post_id ),
 				$this->get_post_title( $post_id )
 			);
+		}
+
+		/**
+		 * Returns FA Icon html
+		 *
+		 * @param  string $icon
+		 * @return string
+		 */
+		public function get_fa_icon_html( $icon ) {
+
+			$icon = 'fa ' . $icon;
+
+			if ( class_exists( 'Elementor\Icons_Manager' ) ) {
+				$icon = Elementor\Icons_Manager::fa4_to_fa5_value_migration( $icon )['value'];
+			}
+
+			return $icon;
 		}
 
 	}
