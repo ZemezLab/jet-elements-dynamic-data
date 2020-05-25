@@ -8,13 +8,14 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 
 		$widget_id  = $this->widget_id();
 		$section_id = $this->insert_after();
+		$plugin     = method_exists( $this, 'get_plugin' ) ? $this->get_plugin() : 'jet-elements';
 
 		add_action(
 			"elementor/element/{$widget_id}/{$section_id}/after_section_end",
 			array( $this, 'register_controls' )
 		);
 
-		add_filter( 'jet-elements/widget/loop-items', array( $this, 'get_meta_loop' ), 10, 3 );
+		add_filter( "{$plugin}/widget/loop-items", array( $this, 'get_meta_loop' ), 10, 3 );
 
 	}
 
@@ -183,8 +184,8 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 	/**
 	 * Register widget controls
 	 *
-	 * @param  [type] $widget [description]
-	 * @return [type]         [description]
+	 * @param  object $widget
+	 * @return void
 	 */
 	public function register_controls( $widget ) {
 
@@ -225,7 +226,7 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 			'set_dynamic_map',
 			array(
 				'type' => Elementor\Controls_Manager::RAW_HTML,
-				'raw' => __( 'Set appropriate repeater field names for widget fields', 'jet-elements-dynamic-data' ),
+				'raw' => '<i>' . __( 'Set appropriate repeater field names for widget fields', 'jet-elements-dynamic-data' ) . '</i>',
 				'condition' => array(
 					$enabled_key => 'true',
 				),
@@ -237,30 +238,34 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 			$widget->add_control(
 				'map_' . $field['name'],
 				array(
-					'label'     => $field['label'],
-					'type'      => Elementor\Controls_Manager::TEXT,
-					'default'   => '',
-					'separator' => 'before',
-					'condition'    => array(
+					'label'       => $field['label'],
+					'label_block' => isset( $field['label_block'] ) ? $field['label_block'] : false,
+					'description' => isset( $field['description'] ) ? $field['description'] : false,
+					'type'        => Elementor\Controls_Manager::TEXT,
+					'default'     => '',
+					'separator'   => 'before',
+					'condition'   => array(
 						$enabled_key => 'true',
 					),
 				)
 			);
 
-			$widget->add_control(
-				'map_' . $field['name'] . '_is_image',
-				array(
-					'label'        => __( 'Is image control', 'jet-elements-dynamic-data' ),
-					'type'         => Elementor\Controls_Manager::SWITCHER,
-					'label_on'     => __( 'Yes', 'jet-elements-dynamic-data' ),
-					'label_off'    => __( 'No', 'jet-elements-dynamic-data' ),
-					'return_value' => 'true',
-					'default'      => '',
-					'condition'    => array(
-						$enabled_key => 'true',
-					),
-				)
-			);
+			if ( isset( $field['is_image'] ) && $field['is_image'] ) {
+				$widget->add_control(
+					'map_' . $field['name'] . '_is_image',
+					array(
+						'label'        => __( 'Is image control', 'jet-elements-dynamic-data' ),
+						'type'         => Elementor\Controls_Manager::SWITCHER,
+						'label_on'     => __( 'Yes', 'jet-elements-dynamic-data' ),
+						'label_off'    => __( 'No', 'jet-elements-dynamic-data' ),
+						'return_value' => 'true',
+						'default'      => '',
+						'condition'    => array(
+							$enabled_key => 'true',
+						),
+					)
+				);
+			}
 
 		}
 

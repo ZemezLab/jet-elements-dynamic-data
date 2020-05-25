@@ -47,8 +47,9 @@ class Jet_Elements_Dynamic_Data_Price_List extends Jet_Elements_Dynamic_Data_Bas
 				'label' => __( 'Description', 'jet-elements-dynamic-data' ),
 			),
 			array(
-				'name'  => 'item_image',
-				'label' => __( 'Image', 'jet-elements-dynamic-data' ),
+				'name'     => 'item_image',
+				'label'    => __( 'Image', 'jet-elements-dynamic-data' ),
+				'is_image' => true,
 			),
 			array(
 				'name'     => 'item_url',

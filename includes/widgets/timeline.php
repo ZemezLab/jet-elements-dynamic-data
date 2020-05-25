@@ -39,8 +39,9 @@ class Jet_Elements_Dynamic_Data_Timeline extends Jet_Elements_Dynamic_Data_Base 
 				'label' => __( 'Show Image (yes or empty string)', 'jet-elements-dynamic-data' ),
 			),
 			array(
-				'name'  => 'item_image',
-				'label' => __( 'Image', 'jet-elements-dynamic-data' ),
+				'name'     => 'item_image',
+				'label'    => __( 'Image', 'jet-elements-dynamic-data' ),
+				'is_image' => true,
 			),
 			array(
 				'name'  => 'item_title',

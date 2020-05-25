@@ -35,8 +35,9 @@ class Jet_Elements_Dynamic_Data_Images_Layout extends Jet_Elements_Dynamic_Data_
 	public function fields_map() {
 		return array(
 			array(
-				'name'  => 'item_image',
-				'label' => __( 'Image', 'jet-elements-dynamic-data' ),
+				'name'     => 'item_image',
+				'label'    => __( 'Image', 'jet-elements-dynamic-data' ),
+				'is_image' => true,
 			),
 			array(
 				'name'  => 'item_icon',

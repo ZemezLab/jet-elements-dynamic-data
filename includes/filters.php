@@ -28,7 +28,7 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data_Filters' ) ) {
 				),
 				'file_url_by_id'  => array(
 					'cb'   => array( $this, 'get_file_url' ),
-					'args' => 'full',
+					'args' => false,
 				),
 				'post_url_by_id' => array(
 					'cb'   => array( $this, 'get_post_url' ),

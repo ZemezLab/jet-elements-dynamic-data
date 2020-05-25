@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: JetElements Dynamic Data Addon
+ * Plugin Name: JetPlugins Dynamic Data Addon
  * Plugin URI:  https://crocoblock.com/
- * Description: Allows to use dynamic data in JetElements widgets.
- * Version:     1.2.2
+ * Description: Allows to use dynamic data in JetPlugins widgets.
+ * Version:     1.3.0
  * Author:      Crocoblock
  * Author URI:  https://crocoblock.com/
  * Text Domain: jet-elements-dynamic-data
@@ -39,7 +39,7 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data' ) ) {
 		 *
 		 * @var string
 		 */
-		private $version = '1.2.2';
+		private $version = '1.3.0';
 
 		/**
 		 * Holder for base plugin URL
@@ -98,6 +98,9 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data' ) ) {
 				'Jet_Elements_Dynamic_Data_Timeline'            => $path . 'timeline.php',
 				'Jet_Elements_Dynamic_Data_Price_List'          => $path . 'price-list.php',
 				'Jet_Elements_Dynamic_Data_Horizontal_Timeline' => $path . 'horizontal-timeline.php',
+				'Jet_Elements_Dynamic_Data_Tabs'                => $path . 'tabs.php',
+				'Jet_Elements_Dynamic_Data_Accordion'           => $path . 'accordion.php',
+				'Jet_Elements_Dynamic_Data_Image_Accordion'     => $path . 'image-accordion.php',
 			);
 
 			require_once $path . 'base.php';

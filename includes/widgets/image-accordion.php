@@ -1,13 +1,22 @@
 <?php
 /**
- * Extend testimonial widget
+ * Extend tabs widget
  */
 
 if ( ! defined( 'WPINC' ) ) {
 	die();
 }
 
-class Jet_Elements_Dynamic_Data_Portfolio extends Jet_Elements_Dynamic_Data_Base {
+class Jet_Elements_Dynamic_Data_Image_Accordion extends Jet_Elements_Dynamic_Data_Base {
+
+	/**
+	 * The plugin to which the widget belongs
+	 *
+	 * @return string
+	 */
+	public function get_plugin() {
+		return 'jet-tabs';
+	}
 
 	/**
 	 * Processed widget ID
@@ -15,7 +24,7 @@ class Jet_Elements_Dynamic_Data_Portfolio extends Jet_Elements_Dynamic_Data_Base
 	 * @return string
 	 */
 	public function widget_id() {
-		return 'jet-portfolio';
+		return 'jet-image-accordion';
 	}
 
 	/**
@@ -28,15 +37,15 @@ class Jet_Elements_Dynamic_Data_Portfolio extends Jet_Elements_Dynamic_Data_Base
 	}
 
 	/**
-	 * Section ID to insert dynamic section after
+	 * Fields map
 	 *
 	 * @return array
 	 */
 	public function fields_map() {
 		return array(
 			array(
-				'name'  => 'item_category',
-				'label' => __( 'Category', 'jet-elements-dynamic-data' ),
+				'name'  => 'item_active',
+				'label' => __( 'Active (yes or empty string)', 'jet-elements-dynamic-data' ),
 			),
 			array(
 				'name'     => 'item_image',
@@ -52,17 +61,13 @@ class Jet_Elements_Dynamic_Data_Portfolio extends Jet_Elements_Dynamic_Data_Base
 				'label' => __( 'Description', 'jet-elements-dynamic-data' ),
 			),
 			array(
-				'name'  => 'item_button_text',
-				'label' => __( 'Link Text', 'jet-elements-dynamic-data' ),
+				'name'  => 'item_link_text',
+				'label' => __( 'Button text', 'jet-elements-dynamic-data' ),
 			),
 			array(
-				'name'     => 'item_button_url',
-				'label'    => __( 'Link Url', 'jet-elements-dynamic-data' ),
+				'name'     => 'item_link',
+				'label'    => __( 'Link', 'jet-elements-dynamic-data' ),
 				'property' => 'url',
-			),
-			array(
-				'name'  => 'item_image_link',
-				'label' => __( 'Image Link (lightbox or external)', 'jet-elements-dynamic-data' ),
 			),
 		);
 	}
