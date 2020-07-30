@@ -52,13 +52,31 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 
 		$settings = $widget->get_settings();
 		$enabled  = isset( $settings[ $this->enabled_key() ] ) ? $settings[ $this->enabled_key() ] : false;
+		$source   = isset( $settings['repeater_source'] ) ? $settings['repeater_source'] : 'post_meta';
 		$meta_key = isset( $settings['repeater_meta_key'] ) ? $settings['repeater_meta_key'] : false;
 
 		if ( ! $enabled || ! $meta_key ) {
 			return $loop;
 		}
 
-		$new_loop = $this->get_meta_value( $meta_key );
+		switch ( $source ) {
+			case 'post_meta':
+				$new_loop = $this->get_meta_value( $meta_key );
+				break;
+
+			case 'option':
+				$option_name = isset( $settings['repeater_option_name'] ) ? $settings['repeater_option_name'] : false;
+				$new_loop    = $this->get_option_value( $option_name, $meta_key );
+				break;
+
+			default:
+				$new_loop = array();
+		}
+
+		if ( empty( $new_loop ) ) {
+			return $loop;
+		}
+
 		$loop     = array();
 		$map      = array();
 
@@ -172,6 +190,47 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 	}
 
 	/**
+	 * Get JetEngine or ACF option value
+	 *
+	 * @param  string $option_name
+	 * @param  string $repeater_key
+	 * @return array
+	 */
+	public function get_option_value( $option_name = null, $repeater_key = null ) {
+
+		if ( empty( $option_name ) ) {
+
+			if ( ! function_exists( 'acf' ) ) {
+				return array();
+			}
+
+			$repeater_values = get_field( $repeater_key, 'options' );
+
+			if ( ! empty( $repeater_values ) && is_array( $repeater_values ) ) {
+				return $repeater_values;
+			}
+
+			return array();
+		}
+
+		$option_value = get_option( $option_name );
+
+		if ( ! $option_value ) {
+			return array();
+		}
+
+		if ( ! isset( $option_value[ $repeater_key ] ) ) {
+			return array();
+		}
+
+		if ( is_array( $option_value[ $repeater_key ] ) ) {
+			return $option_value[ $repeater_key ];
+		}
+
+		return array();
+	}
+
+	/**
 	 * Return enabled key name
 	 *
 	 * @return string
@@ -207,6 +266,36 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 				'label_off'    => __( 'No', 'jet-elements-dynamic-data' ),
 				'return_value' => 'true',
 				'default'      => '',
+			)
+		);
+
+		$widget->add_control(
+			'repeater_source',
+			array(
+				'label'     => __( 'Source', 'jet-elements-dynamic-data' ),
+				'type'      => Elementor\Controls_Manager::SELECT,
+				'default'   => 'post_meta',
+				'options'   => array(
+					'post_meta' => __( 'Post Meta', 'jet-elements-dynamic-data' ),
+					'option'    => __( 'Option', 'jet-elements-dynamic-data' ),
+				),
+				'condition' => array(
+					$enabled_key => 'true',
+				),
+			)
+		);
+
+		$widget->add_control(
+			'repeater_option_name',
+			array(
+				'label'       => __( 'Option name', 'jet-elements-dynamic-data' ),
+				'type'        => Elementor\Controls_Manager::TEXT,
+				'description' => __( 'Leave empty for retrieve repeater values from the ACF options page.', 'jet-elements-dynamic-data' ),
+				'default'     => '',
+				'condition'   => array(
+					$enabled_key      => 'true',
+					'repeater_source' => 'option',
+				),
 			)
 		);
 
