@@ -35,19 +35,19 @@ class Jet_Elements_Dynamic_Data_Hotspots extends Jet_Elements_Dynamic_Data_Base 
 	public function fields_map() {
 		return array(
 			array(
-				'name' => 'vertical_position',
+				'name'  => 'vertical_position',
 				'label' => esc_html__( 'Vertical Position(%)', 'jet-elements-dynamic-data' ),
 			),
 			array(
-				'name' => 'horizontal_position',
+				'name'  => 'horizontal_position',
 				'label' => esc_html__( 'Horizontal Position(%)', 'jet-elements-dynamic-data' ),
 			),
 			array(
-				'name' => 'hotspot_text',
+				'name'  => 'hotspot_text',
 				'label' => esc_html__( 'Text', 'jet-elements-dynamic-data' ),
 			),
 			array(
-				'name' => 'hotspot_description',
+				'name'  => 'hotspot_description',
 				'label' => esc_html__( 'Description', 'jet-elements-dynamic-data' ),
 			),
 			array(
