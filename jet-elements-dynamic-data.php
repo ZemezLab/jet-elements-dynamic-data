@@ -101,6 +101,7 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data' ) ) {
 				'Jet_Elements_Dynamic_Data_Tabs'                => $path . 'tabs.php',
 				'Jet_Elements_Dynamic_Data_Accordion'           => $path . 'accordion.php',
 				'Jet_Elements_Dynamic_Data_Image_Accordion'     => $path . 'image-accordion.php',
+				'Jet_Elements_Dynamic_Data_Hotspots'            => $path . 'hotspots.php',
 			);
 
 			require_once $path . 'base.php';
