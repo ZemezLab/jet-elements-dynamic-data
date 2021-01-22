@@ -10,6 +10,15 @@ if ( ! defined( 'WPINC' ) ) {
 class Jet_Elements_Dynamic_Data_Hotspots extends Jet_Elements_Dynamic_Data_Base {
 
 	/**
+	 * The plugin to which the widget belongs
+	 *
+	 * @return string
+	 */
+	public function get_plugin() {
+		return 'jet-tricks';
+	}
+
+	/**
 	 * Processed widget ID
 	 *
 	 * @return string
@@ -35,14 +44,6 @@ class Jet_Elements_Dynamic_Data_Hotspots extends Jet_Elements_Dynamic_Data_Base 
 	public function fields_map() {
 		return array(
 			array(
-				'name'  => 'vertical_position',
-				'label' => esc_html__( 'Vertical Position(%)', 'jet-elements-dynamic-data' ),
-			),
-			array(
-				'name'  => 'horizontal_position',
-				'label' => esc_html__( 'Horizontal Position(%)', 'jet-elements-dynamic-data' ),
-			),
-			array(
 				'name'  => 'hotspot_text',
 				'label' => esc_html__( 'Text', 'jet-elements-dynamic-data' ),
 			),
@@ -54,6 +55,14 @@ class Jet_Elements_Dynamic_Data_Hotspots extends Jet_Elements_Dynamic_Data_Base 
 				'name'     => 'hotspot_url',
 				'label'    => esc_html__( 'Link', 'jet-elements-dynamic-data' ),
 				'property' => 'url',
+			),
+			array(
+				'name'  => 'vertical_position',
+				'label' => esc_html__( 'Vertical Position(%)', 'jet-elements-dynamic-data' ),
+			),
+			array(
+				'name'  => 'horizontal_position',
+				'label' => esc_html__( 'Horizontal Position(%)', 'jet-elements-dynamic-data' ),
 			),
 		);
 	}
