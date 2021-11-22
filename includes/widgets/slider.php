@@ -71,6 +71,10 @@ class Jet_Elements_Dynamic_Data_Slider extends Jet_Elements_Dynamic_Data_Base {
 				'name'  => 'item_button_secondary_text',
 				'label' => __( 'Secondary Button Text', 'jet-elements-dynamic-data' ),
 			),
+			array(
+				'name'  => 'item_link_url',
+				'label' => __( 'Link on whole slide', 'jet-elements-dynamic-data' ),
+			),
 		);
 	}
 
