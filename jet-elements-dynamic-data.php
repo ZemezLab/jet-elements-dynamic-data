@@ -102,8 +102,9 @@ if ( ! class_exists( 'Jet_Elements_Dynamic_Data' ) ) {
 				'Jet_Elements_Dynamic_Data_Accordion'           => $path . 'accordion.php',
 				'Jet_Elements_Dynamic_Data_Image_Accordion'     => $path . 'image-accordion.php',
 				'Jet_Elements_Dynamic_Data_Hotspots'            => $path . 'hotspots.php',
-				'Jet_Elements_Dynamic_Data_Line_Chart'            => $path . 'line-chart.php',
-				'Jet_Elements_Dynamic_Data_Bar_Chart'            => $path . 'bar-chart.php',
+				'Jet_Elements_Dynamic_Data_Line_Chart'          => $path . 'line-chart.php',
+				'Jet_Elements_Dynamic_Data_Bar_Chart'           => $path . 'bar-chart.php',
+				'Jet_Elements_Dynamic_Data_Advanced_Map'        => $path . 'advanced-map.php',
 			);
 
 			require_once $path . 'base.php';
