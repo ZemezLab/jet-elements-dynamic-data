@@ -224,7 +224,7 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 		}
 
 		if ( is_array( $option_value[ $repeater_key ] ) ) {
-			return $option_value[ $repeater_key ];
+			return wp_unslash( $option_value[ $repeater_key ] );
 		}
 
 		return array();
