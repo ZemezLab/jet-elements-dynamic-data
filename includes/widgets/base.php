@@ -69,8 +69,12 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 				$new_loop    = $this->get_option_value( $option_name, $meta_key );
 				break;
 
+			case 'taxonomy':
+				$new_loop = $this->get_terms( $meta_key );
+				break;
+
 			default:
-				$new_loop = array();
+				$new_loop = apply_filters( 'jet-elements-dynamic-data/source', array(), $loop, $loop_setting, $widget );
 		}
 
 		if ( empty( $new_loop ) ) {
@@ -190,6 +194,36 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 	}
 
 	/**
+	 * Get JetEngine taxonomy value
+	 *
+	 * @param  string $meta_key
+	 * @return array
+	 */
+	public function get_terms( $meta_key = null ) {
+
+		if ( ! $meta_key ) {
+			return array();
+		}
+
+		if ( is_archive() ){
+
+			$archive_term = get_queried_object();
+
+			if ( $archive_term && !is_wp_error( $archive_term ) ) {
+
+				$term_id = $archive_term->term_id;
+			
+				// Get custom field (term meta) for the queried term.
+				$value = get_term_meta( $term_id, $meta_key, true );
+
+			}
+			return $value;
+		}
+
+		return array();
+	}
+
+	/**
 	 * Get JetEngine or ACF option value
 	 *
 	 * @param  string $option_name
@@ -275,10 +309,11 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 				'label'     => __( 'Source', 'jet-elements-dynamic-data' ),
 				'type'      => Elementor\Controls_Manager::SELECT,
 				'default'   => 'post_meta',
-				'options'   => array(
-					'post_meta' => __( 'Post Meta', 'jet-elements-dynamic-data' ),
-					'option'    => __( 'Option', 'jet-elements-dynamic-data' ),
-				),
+				'options'   => apply_filters( 'jet-elements-dynamic-data/repeater-source', array(
+					'post_meta'   => __( 'Post Meta', 'jet-elements-dynamic-data' ),
+					'option'      => __( 'Option', 'jet-elements-dynamic-data' ),
+					'taxonomy'    => __( 'Taxonomy', 'jet-elements-dynamic-data' ),
+				)),
 				'condition' => array(
 					$enabled_key => 'true',
 				),
@@ -306,8 +341,8 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 				'type'      => Elementor\Controls_Manager::TEXT,
 				'default'   => '',
 				'condition' => array(
-						$enabled_key => 'true',
-					),
+					$enabled_key => 'true',
+				),
 			)
 		);
 
