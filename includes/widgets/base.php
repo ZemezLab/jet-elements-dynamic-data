@@ -194,7 +194,7 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 	}
 
 	/**
-	 * Get JetEngine taxonomy value
+	 * Get JetEngine or ACF taxonomy field value
 	 *
 	 * @param  string $meta_key
 	 * @return array
@@ -205,18 +205,31 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 			return array();
 		}
 
-		if ( is_archive() ){
+		$archive_term = get_queried_object();
 
-			$archive_term = get_queried_object();
+		if ( is_archive() && $archive_term ){
 
-			if ( $archive_term && !is_wp_error( $archive_term ) ) {
+			$term_id = $archive_term->term_id;
 
-				$term_id = $archive_term->term_id;
-			
-				// Get custom field (term meta) for the queried term.
-				$value = get_term_meta( $term_id, $meta_key, true );
+			// Get custom field (term meta) for the queried term.
+			$value = get_term_meta( $term_id, $meta_key, true );
 
+			if ( is_array( $value ) ) {
+				return $value;
 			}
+
+			if ( ! $value ) {
+				return array();
+			}
+
+			if ( ! function_exists( 'acf' ) ) {
+				return array();
+			}
+			
+			$field   = acf_get_field( $meta_key );
+			// Get the ACF field value for the term
+			$value = get_field( $field['name'], 'term_' . $term_id );
+
 			return $value;
 		}
 
