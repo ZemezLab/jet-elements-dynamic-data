@@ -222,15 +222,26 @@ abstract class Jet_Elements_Dynamic_Data_Base {
 				return array();
 			}
 
-			if ( ! function_exists( 'acf' ) ) {
+			if ( 0 >= absint( $value ) || ! function_exists( 'acf_get_field' ) ) {
 				return array();
 			}
-			
-			$field   = acf_get_field( $meta_key );
-			// Get the ACF field value for the term
-			$value = get_field( $field['name'], 'term_' . $term_id );
 
-			return $value;
+			$field   = acf_get_field( $meta_key );
+			$sub_fields = isset( $field['sub_fields'] ) ? $field['sub_fields'] : false;
+			$result     = array();
+
+			for ( $i = 0; $i < absint( $value ); $i++ ) {
+	
+				$item = array();
+	
+				foreach ( $sub_fields as $sub_field ) {
+					$sub_key = $meta_key . '_' . $i . '_' . $sub_field['name'];
+					$item[ $sub_field['name'] ] = get_term_meta( $term_id, $sub_key, true );
+				}
+				$result[] = $item;
+			}
+
+			return $result;
 		}
 
 		return array();
